@@ -40,10 +40,8 @@ public class Movie {
       return _price.getCharge(daysRented);
    }
 
+   // ⭐ Agora apenas delega
    public int getFrequentRenterPoints(int daysRented) {
-      if ((getPriceCode() == NEW_RELEASE) && daysRented > 1)
-         return 2;
-      else
-         return 1;
+      return _price.getFrequentRenterPoints(daysRented);
    }
 }
