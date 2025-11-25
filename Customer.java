@@ -17,27 +17,48 @@ public class Customer {
       return _name;
    }
 
+   public Enumeration getRentals() {
+      return _rentals.elements();
+   }
+
    public String statement() {
-      double totalAmount = 0;
-      int frequentRenterPoints = 0;
       Enumeration rentals = _rentals.elements();
       String result = "Rental Record for " + getName() + "\n";
 
       while (rentals.hasMoreElements()) {
          Rental each = (Rental) rentals.nextElement();
 
-         // agora chamamos o método movido
-         frequentRenterPoints += each.getFrequentRenterPoints();
-
          result += "\t" + each.getMovie().getTitle() + "\t" +
                    each.getCharge() + "\n";
-
-         totalAmount += each.getCharge();
       }
 
-      result += "Amount owed is " + totalAmount + "\n";
-      result += "You earned " + frequentRenterPoints +
+      result += "Amount owed is " + getTotalCharge() + "\n";
+      result += "You earned " + getTotalFrequentRenterPoints() +
                 " frequent renter points";
+
+      return result;
+   }
+
+   public double getTotalCharge() {
+      double result = 0;
+      Enumeration rentals = _rentals.elements();
+
+      while (rentals.hasMoreElements()) {
+         Rental each = (Rental) rentals.nextElement();
+         result += each.getCharge();
+      }
+
+      return result;
+   }
+
+   public int getTotalFrequentRenterPoints() {
+      int result = 0;
+      Enumeration rentals = _rentals.elements();
+
+      while (rentals.hasMoreElements()) {
+         Rental each = (Rental) rentals.nextElement();
+         result += each.getFrequentRenterPoints();
+      }
 
       return result;
    }
