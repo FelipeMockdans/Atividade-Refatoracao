@@ -24,7 +24,6 @@ public class Movie {
       return _title;
   }
 
-  // ⭐ NOVO MÉTODO — código movido de Rental
   public double getCharge(int daysRented) {
       double result = 0;
 
@@ -46,5 +45,13 @@ public class Movie {
             break;
       }
       return result;
+  }
+
+  // ⭐ NOVO: método movido de Rental
+  public int getFrequentRenterPoints(int daysRented) {
+      if ((getPriceCode() == NEW_RELEASE) && daysRented > 1)
+         return 2;
+      else
+         return 1;
   }
 }
